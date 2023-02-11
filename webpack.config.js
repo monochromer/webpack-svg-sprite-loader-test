@@ -1,6 +1,6 @@
 const path = require('path');
-const webpack = require('webpack');
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const env = process.env.NODE_ENV || 'development';
 const isProd = env === 'production';
@@ -17,8 +17,6 @@ module.exports = {
   },
 
   plugins: [
-    new webpack.NamedModulesPlugin(),
-    new webpack.HashedModuleIdsPlugin(),
     new SpriteLoaderPlugin({
       plainSprite: true,
       spriteAttrs: {
@@ -29,7 +27,8 @@ module.exports = {
           hight: 1px;
         `.replace(/\s+/, '')
       }
-    })
+    }),
+    new HtmlWebpackPlugin()
   ],
 
   module: {
@@ -46,5 +45,11 @@ module.exports = {
         ]
       }
     ]
+  },
+
+  optimization: {
+    moduleIds: 'hashed',
+    moduleIds: 'named',
+    chunkIds: 'named'
   }
 };

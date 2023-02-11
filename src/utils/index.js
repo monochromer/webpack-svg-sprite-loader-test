@@ -8,7 +8,7 @@ export function SvgIcon(BrowserSpriteSymbol) {
     : BrowserSpriteSymbol.url;
 
   return `
-    <svg class="icon">
+    <svg class="icon" width="1em" height="1em">
       <use xlink:href="${iconPath}"></use>
     </svg>
   `;
